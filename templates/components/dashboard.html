@@ -1,0 +1,30 @@
+{% import 'components/cashburn.html' as cashburn %}
+{% import 'components/stats.html' as stats %}
+{% import 'components/budget.html' as budget %}
+
+{% macro dashboard(user_id,
+                   cashburn_cashburn,
+                   cashburn_daily_allowance,
+                   cashburn_daily_spending,
+                   cashburn_daily_allotment,
+                   cashburn_weekly_allowance,
+                   cashburn_weekly_spending,
+                   cashburn_weekly_allotment,
+                   _stats,
+                   _budget)
+-%}
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/components/dashboard.css') }}>
+
+<div class=dashboard>
+  {{ cashburn.cashburn(cashburn_cashburn,
+                       cashburn_daily_allowance,
+                       cashburn_daily_spending,
+                       cashburn_daily_allotment,
+                       cashburn_weekly_allowance,
+                       cashburn_weekly_spending,
+                       cashburn_weekly_allotment) }}
+  {{ stats.stats(user_id, _stats) }}
+  {{ budget.budget(user_id, _budget) }}
+</div>
+
+{%- endmacro %}

@@ -1,0 +1,44 @@
+@import url('style.css');
+
+.main {
+    position: fixed;
+    top: 12vh;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.main .left {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 2rem 4rem;
+    font-size: 1.5rem;
+}
+
+.main .left a {
+    margin-bottom: .5rem;
+    color: #002;
+}
+
+.main .left .selected {
+    color: #59a;
+}
+
+.main .center {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    overflow: auto;
+}
+
+.main .right {
+    height: 100%;
+    width: 20%;
+}

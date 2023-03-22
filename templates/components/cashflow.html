@@ -1,0 +1,112 @@
+{% macro cashflow(endpoint, _incomes, _expenses, _targets, _accounts) -%}
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/crud.css') }}>
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/components/models.css') }}>
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/components/cashflow.css') }}>
+
+<div class='cashflow models'>
+  <div class=sidebar>
+    <a href=/app/cashflow/incomes>Incomes</a>
+    <a href=/app/cashflow/expenses>Expenses</a>
+    <a href=/app/cashflow/targets>Targets</a>
+  </div>
+  <div class=viewpanel>
+    {% if endpoint == 'app-cashflow' %}
+      {% if _incomes and _expenses %}
+        {{ targets(_targets) }}
+      {% elif _incomes and not _expenses %}
+        {{ expenses(_expenses, _accounts) }}
+      {% else %}
+        {{ incomes(_incomes, _accounts) }}
+      {% endif %}
+    {% elif endpoint == 'app-cashflow-incomes' %}
+      {{ incomes(_incomes, _accounts) }}
+    {% elif endpoint == 'app-cashflow-expenses' %}
+      {{ expenses(_expenses, _accounts) }}
+    {% elif endpoint == 'app-cashflow-targets' %}
+      {{ targets(_targets) }}
+    {% endif %}
+  </div>
+</div>
+
+<script src={{ url_for('static', filename='js/crud.js') }}></script>
+<script src={{ url_for('static', filename='js/modal.js') }}></script>
+<script src={{ url_for('static', filename='js/components/cashflow.js') }}></script>
+{%- endmacro %}
+
+{% macro incomes(_incomes, _accounts) -%}
+  <div class=incomes><h1>My Incomes<button class=models onclick="incomesModal.show(
+    {crud: incomes, callback: 'buildCreateForm', entity: null, displayName: 'Income'})">🟢</button></h1>
+    {% if not _incomes %}<h2>Add an Income</h2>{% endif %}
+    {% for _ in _incomes %}
+      {{ item(_, 'incomes', _accounts) }}
+    {% endfor %}
+  </div>
+{%- endmacro %}
+
+{% macro expenses(_expenses, _accounts) -%}
+  <div class=expenses><h1>My Expenses<button class=models onclick="expensesModal.show(
+    {crud: expenses, callback: 'buildCreateForm', entity: null, displayName: 'Expense'})">🟢</button></h1>
+    {% if not _expenses %}<h2>Add an Expenses</h2>{% endif %}
+    {% for _ in _expenses %}
+      {{ item(_, 'expenses', _accounts) }}
+    {% endfor %}
+  </div>
+{%- endmacro %}
+
+{% macro targets(_targets) -%}
+  <div class=targets><h1>My Targets<button class=models onclick="targetsModal.show(
+    {crud: targets, callback: 'buildCreateForm', entity: null, displayName: 'Target'})">🟢</button></h1>
+    {% if not _targets %}<h2>Add a Target</h2>{% endif %}
+    {% for _ in _targets %}
+      {{ item(_, 'targets') }}
+    {% endfor %}
+  </div>
+{%- endmacro %}
+
+{% macro item(_item, type_name, _accounts) -%}
+  <div class='item {% if _item.is_primary == 'true' %}primary
+                   {% elif _item.from_target %}from-target
+                   {% elif _item.expense_id %}rolled
+                   {% endif %}'>
+    <div>
+      <button onclick="{{type_name}}Modal.show(
+        {crud: {{type_name}}, callback: 'buildUpdateForm', entity: {{_item}}, displayName: '{{type_name[:-1]}}'})">✏️
+      </button>
+    </div>
+    <div>
+      <button onclick="{{type_name}}Modal.show(
+        {crud: {{type_name}}, callback: 'buildDeleteForm', entity: {{_item}}, displayName: '{{type_name[:-1]}}'})">🗑️
+      </button>
+    </div>
+    {% if type_name == 'incomes' %}
+    <div>
+      <button onclick="{{type_name}}Modal.show(
+        {crud: {{type_name}}, callback: 'buildReceiveForm', entity: {{_item}}, accounts: {{_accounts}},
+         displayName: '{{type_name[:-1]}}'})">💰
+      </button>
+    </div>
+    {% elif type_name == 'expenses' %}
+    <div>
+      <button onclick="{{type_name}}Modal.show(
+        {crud: {{type_name}}, callback: 'buildPayForm', entity: {{_item}}, accounts: {{_accounts}},
+         displayName: '{{type_name[:-1]}}'})">💰
+      </button>
+    </div>
+    {% elif type_name == 'targets' %}
+    <div>
+      <button onclick="{{type_name}}Modal.show(
+        {crud: {{type_name}}, callback: 'buildRollForm', entity: {{_item}}, displayName: '{{type_name[:-1]}}'})">☸️
+      </button>
+    </div>
+    {% endif %}
+    <div class=name>{{ _item.name }}</div>
+    <div class=attribute>Amount: ${{ _item.amount }}</div>
+    {% if type_name != 'targets' %}
+    <div class=attribute>Cycle: {{ _item.cycle_int }} {{ _item.cycle_str }}</div>
+    {% endif %}
+    {% if type_name in ('expenses', 'targets') and _item.web_link %}
+    <div class=attribute><a href={{ _item.web_link }} target=_blank style=font-size:.95rem>{{ _item.web_link }}</a></div>
+    {% endif %}
+</div>
+
+{%- endmacro %}

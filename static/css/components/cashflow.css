@@ -1,0 +1,77 @@
+.cashflow {
+  height: 85vh;
+  width: 95vw;
+  margin: auto;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.cashflow .sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  height: 100%;
+  width: 10%;
+  padding-top: 5rem;
+}
+
+.cashflow .sidebar a {
+  background: none;
+  font-family: Oswald;
+  font-size: 1.5rem;
+  margin: .5rem;
+  color: #06a;
+}
+
+.cashflow .sidebar a:hover {
+  text-decoration: none;
+}
+
+.cashflow .viewpanel {
+  height: 85%;
+  width: 90%;
+}
+
+.cashflow .incomes {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  overflow: auto;
+}
+
+.cashflow .expenses {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  overflow: auto;
+}
+
+.cashflow .targets {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  overflow: auto;
+}
+
+.cashflow .incomes .item.primary {
+  border: 2px solid #08f;
+}
+
+.cashflow .expenses .item.from-target {
+  border: 2px solid #a2c;
+}
+
+.cashflow .targets .item.rolled {
+  border: 2px solid #d22;
+}

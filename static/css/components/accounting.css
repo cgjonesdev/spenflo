@@ -1,0 +1,76 @@
+.accounting {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  height: 85vh;
+  width: 100vw;
+}
+
+.accounting button {
+}
+
+.accounting a {
+  text-decoration: none;
+  color: black;
+}
+
+.accounting .accounts {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  height: 90%;
+  width: 85%;
+  overflow: auto;
+}
+
+.accounting .account.selected {
+  border: 2px solid #8bf;
+  box-shadow: 1px 2px 6px #ddd;
+}
+
+.accounting .transactions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  #overflow: auto;
+  height: auto;
+  width: 80%;
+}
+
+.accounting .transactions table {
+  width: 75%;
+}
+
+.accounting .transactions th {
+  text-align: left;
+  font-size: 1.75rem;
+  font-weight: bold;
+  padding: 0 1rem;
+}
+
+.accounting .transactions td {
+  width: calc(100vh / 6);
+  max-width: calc(100vh / 6);
+  border-radius: .2rem;
+  padding: .1rem 1rem;
+  font-size: 1rem;
+  word-break: break-all;
+  font-family: Oswald;
+}
+
+.accounting .transactions td.action {
+  width: 2rem;
+  max-width: 2rem;
+}
+
+.accounting .transaction td button {
+  font-size: 1.2rem;
+  padding: 0 .1rem;
+}
+
+.accounting .transaction input[type=submit] {
+  background: linear-gradient(#eee, #ccc);
+}

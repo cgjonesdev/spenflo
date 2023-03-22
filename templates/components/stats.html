@@ -1,0 +1,21 @@
+{% macro stats(user_id, _stats) -%}
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/components/stats.css') }}>
+
+<script src={{ url_for('static', filename='js/script.js') }}></script>
+<script src={{ url_for('static', filename='js/external.js') }}></script>
+
+<div class=stats>
+  <div class=userId style=display:none>{{ user_id }}</div>
+  <h1><a href=/app/glossary#stats>Stats</a></h1>
+  <div class=display>
+    <div class='item score'>Score: {{ _stats.score }}</div>
+    <div class=item>Income Ratio: {{ _stats.income_ratio }}%</div>
+    <div class=item>Runway {{ _stats.runway.as_string }}</div>
+    <div class=item>Cash: {{ _stats.spending_power }}</div>
+    <div class=item>Networth: {{ _stats.networth }}</div>
+    <div class=item>Liquidity: {{ _stats.liquidity }}%</div>
+    <div class=item>Wealth: {{ _stats.wealth }}</div>
+  </div>
+</div>
+
+{%- endmacro %}

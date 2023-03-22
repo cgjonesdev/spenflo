@@ -1,0 +1,44 @@
+.dashboard .stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  width: 100%;
+  color: #000;
+  background: #ddd;
+}
+
+.dashboard .stats h2 {
+  margin: .5rem;
+}
+
+.dashboard .stats .loading {
+  font-size: 1.5rem;
+  color: #666;
+  font-weight: bold;
+  padding: .8rem;
+}
+
+.dashboard .stats .display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard .stats .display .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  margin: .5rem;
+  font-weight: bold;
+  border-radius: .2rem;
+  padding: .3rem;
+}
+
+.dashboard .stats .display .item.score {
+  background: #555;
+  color: #fff;
+  border: 1px solid #444;
+}

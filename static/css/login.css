@@ -1,0 +1,25 @@
+.login {
+  height: 30vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login button {
+  font-size: 1.5rem;
+}
+
+.message {
+  font-size: 1.5rem;
+  color: #048;
+}
+
+.error {
+  color: #d22;
+}
+
+p.error {
+  font-size: 1.2rem;
+}

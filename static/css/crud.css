@@ -1,0 +1,45 @@
+@import url('style.css');
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form input {
+  padding: .4rem 2rem;
+  background: linear-gradient(#eee, #f8f8f8);
+  width: 70%;
+  color: 444;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+}
+
+form input[type=submit] {
+  width: 40%;
+  margin-top: 1rem;
+  padding: .2rem 2rem !important;
+  color: white;
+  border-radius: .2rem;
+}
+
+form select {
+  width: 70%;
+  padding: .4rem 2rem;
+  font-size: 1.2rem;
+  background: linear-gradient(#eee, #f8f8f8);
+}
+
+.add-button {
+  background: linear-gradient(#7d7, #4a4);
+}
+
+.update-button {
+  background: linear-gradient(#adf, #48c);
+}
+
+.delete-button {
+  background: linear-gradient(#faa, #a44);
+}

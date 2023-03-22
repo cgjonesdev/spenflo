@@ -1,0 +1,22 @@
+{% macro modal() -%}
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/style.css') }}>
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/modal.css') }}>
+
+<div class=modal>
+  <div class=underlay></div>
+  <div class=dialog>
+    <button class=close>x</button>
+    <h2 class=heading>Test</h2>
+    <div class=text>
+      <div class=message>
+        <p>Gluten-free readymade tofu post-ironic af chicharrones normcore pork belly.</p>
+        <p>Yuccie chicharrones intelligentsia marfa franzen keffiyeh brunch post-ironic pinterest vinyl tote bag salvia wayfarers.</p>
+        <p>Sus bicycle rights flannel, affogato air plant wolf bitters leggings.</p>
+        <p>Tacos kombucha aesthetic, tonx put a bird on it umami cliche art party.</p>
+        <p>Praxis meditation unicorn, four loko flannel vibecession bodega boys art party roof party seitan literally pickled before they sold out.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- endmacro %}

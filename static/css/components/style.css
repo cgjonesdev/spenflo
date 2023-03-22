@@ -1,0 +1,43 @@
+@import url('../layout.css');
+
+a:hover {
+    text-decoration: none;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+    display: block;
+    justify-content: start;
+    align-items: center;
+    margin: 1rem 0;
+    padding: .5rem 2rem;
+    #background: #aaa;
+    #color: #fff;
+    border-radius: .2rem;
+    #box-shadow: 0 4px 12px #bbb;
+    width: 50vw;
+}
+
+.list a {
+  display: block;
+}
+
+.list.highlight {
+  background: #eee;
+  border-radius: .5rem;
+}
+
+.list .item.heading {
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.list .item.detail {
+    margin: 0 1rem;
+    font-size: 1.2rem;
+}

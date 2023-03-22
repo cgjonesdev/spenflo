@@ -1,0 +1,38 @@
+{% macro glossary() -%}
+<link rel='stylesheet' type='text/css' href={{ url_for('static', filename='css/components/glossary.css') }}>
+
+<div class=glossary>
+  <div class=definition>
+    <div id=cashburn class=heading>
+      Cashburn
+    </div>
+    <div class=text>
+      Cashburn is the amount of money you are spending during a pay period. The amount of money is taken from the
+      Budget's spending category for a given pay period. As the pay period progresses and money is spent, the spent
+      amount is tracked against the time that's gone by. If you are spending more money than you should be, then
+      you would be ovespending.
+    </div>
+  </div>
+  <div class=definition>
+    <div id=stats class=heading>
+      Stats
+    </div>
+    <div class=text>
+      Stats are a way of measuring your progress. All Stats are important, but the most important is your Spenflo
+      Score. This gives an overall rating of your financial health and takes all the other Stats figures into consideration.
+    </div>
+  </div>
+  <div class=definition>
+    <div id=glossary-budget class=heading>
+      Budget
+    </div>
+    <div class=text>
+      Your Budget is a breakdown of 3 simple categories: Bills, Savings, and Spending, specfic to the pay period you are
+      in. No need for envelopes or pie
+      charts trying to figure out how much money to put in each category. The Budget tells you how much to set aside
+      for bills each paycheck, how much you should save, and what you can spend each pay period without getting into
+      trouble.
+    </div>
+  </div>
+</div>
+{%- endmacro %}

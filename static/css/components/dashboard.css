@@ -1,0 +1,38 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.dashboard a:hover  {
+  text-decoration: none;
+}
+
+.dashboard h1, .dashboard h1 a  {
+  margin: 1rem;
+  color: black;
+}
+
+.dashboard .blue {
+  color: #22f;
+}
+
+.dashboard .green {
+  color: #0a0;
+}
+
+.dashboard .yellow {
+  color: #cc0;
+}
+
+.dashboard .orange {
+  color: #d60;
+}
+
+.dashboard .darkred {
+  color: #a00;
+}
+
+.dashboard .red {
+  color: #d22;
+}

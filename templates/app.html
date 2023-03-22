@@ -1,0 +1,41 @@
+{% import 'components/header.html' as header %}
+{% import 'components/dashboard.html' as dashboard %}
+{% import 'components/accounting.html' as accounting %}
+{% import 'components/cashflow.html' as cashflow %}
+{% import 'components/glossary.html' as glossary %}
+{% import 'components/footer.html' as footer %}
+{% import 'login.html' as login %}
+{% import 'modal.html' as modal %}
+
+<html>
+  <head>
+    <!--<meta name='viewport' content='width=device-width, initial-scale=1'>-->
+    <link rel='stylesheet' type='text/css' href={{ url_for('static', filename='css/style.css') }}>
+    <link rel='stylesheet' type='text/css' href={{ url_for('static', filename='css/app.css') }}>
+  </head>
+  <body>
+    <div class=main>
+    {{ modal.modal() }}
+    {{ header.header(endpoint, logged_in) }}
+    {% if endpoint == 'login' %}{{ login.login(referrer, message) }}{% endif %}
+    {% if endpoint in ('app', 'app-dashboard') %}{{ dashboard.dashboard(user_id,
+                                                                        cashburn_cashburn,
+                                                                        cashburn_daily_allowance,
+                                                                        cashburn_daily_spending,
+                                                                        cashburn_daily_allotment,
+                                                                        cashburn_weekly_allowance,
+                                                                        cashburn_weekly_spending,
+                                                                        cashburn_weekly_allotment,
+                                                                        _stats,
+                                                                        _budget) }}
+    {% elif endpoint.startswith('app-accounting') %}
+      {{ accounting.accounting(_accounts, selected_account, _transactions) }}
+    {% elif endpoint.startswith('app-cashflow') %}
+      {{ cashflow.cashflow(endpoint, _incomes, _expenses, _targets, _accounts) }}
+    {% elif endpoint == 'app-glossary' %}
+      {{ glossary.glossary() }}
+    {% endif %}
+    {{ footer.footer() }}
+    </div>
+  </body>
+</html>

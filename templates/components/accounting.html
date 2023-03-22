@@ -1,0 +1,89 @@
+{% macro accounting(_accounts, selected_account, _transactions) -%}
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/crud.css') }}>
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/components/models.css') }}>
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/components/accounting.css') }}>
+
+<div class='accounting models'>
+  {{ accounts(_accounts, selected_account, _transactions) }}
+</div>
+
+<script src={{ url_for('static', filename='js/crud.js') }}></script>
+<script src={{ url_for('static', filename='js/modal.js') }}></script>
+<script src={{ url_for('static', filename='js/components/accounting.js') }}></script>
+{%- endmacro %}
+
+{% macro accounts(_accounts, selected_account, _transactions) -%}
+<div class=accounts>
+  <h1>My Accounts<div><button class=models onclick="accountsModal.show(
+        {crud: accounts, callback: 'buildCreateForm', entity: null, displayName: 'Account'})">🟢</button></div></h1>
+  {% for _ in _accounts %}
+    {{ account(_accounts, _, selected_account, _transactions) }}
+  {% endfor %}
+</div>
+{%- endmacro %}
+
+{% macro account(_accounts, _account, selected_account, _transactions) -%}
+<div class='account item{% if _account._id == selected_account %} selected{% endif %}'>
+  <div><button onclick="accountsModal.show(
+      {crud: accounts, callback: 'buildUpdateForm', entity: {{_account}}, displayName: 'account'})">✏️</button></div>
+  <div><button onclick="accountsModal.show(
+      {crud: accounts, callback: 'buildDeleteForm', entity: {{_account}}, displayName: 'account'})">🗑️</button></div>
+  <div><button onclick="accounts.expandTransactions('/app/accounting/accounts/{{ _account._id }}')">🔽</button></div>
+  <div class=name>{{ _account.name }}</div>
+  <div class=attribute>Type: {{ _account.kind }}</div>
+  <div class=attribute>Balance: {{ _account.balance }}</div>
+  <div class=attribute>Notes: {{ _account.notes }}</div>
+</div>
+{% if _account._id == selected_account %}
+  {{ transactions(_accounts, _account, _transactions, selected_account) }}
+{% endif %}
+{%- endmacro %}
+
+{% macro transactions(_accounts, _account, _transactions, selected_account) -%}
+<div class=transactions>
+  <h2>
+    <span style=color:#666;margin-right:.5rem>{{ _account.name }}</span> 
+      transactions
+      <button onclick="transactionsModal.show(
+        {crud: transactions, callback: 'buildCreateForm', extraData: {{_accounts}}, displayName: 'Transaction'})">🟢
+      </button>
+  </h2>
+    <div class=accountId style=display:none>{{ selected_account }}</div>
+  {% if _transactions %}
+  <table>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>Instrument</th>
+      <th>Type</th>
+      <th>Category</th>
+      <th>Memo</th>
+    </tr>
+    {% for _ in _transactions %}
+      {{ transaction(_accounts, _, selected_account) }}
+    {% endfor %}
+  </table>
+  {% endif %}
+</div>
+{%- endmacro %}
+
+{% macro transaction(_accounts, _transaction, selected_account) -%}
+<tr class=transaction>
+  <td class=action><button onclick="transactionsModal.show(
+    {crud: transactions, callback: 'buildUpdateForm', entity: {{_transaction}}, extraData: {{_accounts}}, displayName:
+    'transaction'})">✏️</button></td>
+  <td class=action><button onclick="transactionsModal.show(
+    {crud: transactions, callback: 'buildDeleteForm', entity: {{_transaction}}, extraData: {{_accounts}}, displayName:
+    'transaction'})">🗑️</button></td>
+  <td>{{ _transaction.name }}</td>
+  <td>{{ _transaction.amount }}</td>
+  <td>{{ _transaction.date }}</td>
+  <td>{{ _transaction.instrument }}</td>
+  <td>{{ _transaction.kind }}</td>
+  <td>{{ _transaction.category }}</td>
+  <td>{{ _transaction.memo }}</td>
+</tr>
+{%- endmacro %}

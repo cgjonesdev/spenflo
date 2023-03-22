@@ -1,0 +1,55 @@
+.modal {
+  display: none;
+  position: absolute;
+  top: 0;
+  left; 0;
+  z-index: 3;
+}
+
+.modal .underlay {
+  height: 200vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, .85);
+}
+
+.modal .dialog {
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background: #fff;
+  border-radius: .2rem;
+}
+
+.modal .dialog h2 {
+  margin: 3rem 4rem 2rem 4rem;
+  margin-bottom: 0;
+  font-size: 3rem;
+  width: 80%;
+  text-align: center;
+}
+
+.modal .dialog div {
+  margin: 2rem;
+  width: 100%;
+}
+
+.modal .dialog .text p {
+  width: 60%;
+  margin: 0 auto 2rem auto;
+  padding: 0 5rem;
+  font-size: 1.4rem;
+  text-align: justify;
+}
+
+.modal .close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  color: #888;
+  padding: .2rem .5rem;
+}

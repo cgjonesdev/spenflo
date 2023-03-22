@@ -1,0 +1,58 @@
+{% macro cashburn(
+  cashburn_cashburn,
+  cashburn_daily_allowance,
+  cashburn_daily_spending,
+  cashburn_daily_allotment,
+  cashburn_weekly_allowance,
+  cashburn_weekly_spending,
+  cashburn_weekly_allotment)
+-%}
+
+<link rel=stylesheet type=text/css href={{ url_for('static', filename='css/components/cashburn.css') }}>
+
+<div class=cashburn>
+  <div class=heading><h1><a href=/app/glossary#cashburn>Cashburn</a></h1></div>
+  {{ income_period(cashburn_cashburn) }}
+  <div class=lower>
+  {{ daily(cashburn_daily_allowance, cashburn_daily_spending, cashburn_daily_allotment) }}
+  {{ weekly(cashburn_weekly_allowance, cashburn_weekly_spending, cashburn_weekly_allotment) }}
+  </div>
+</div>
+
+<script src={{ url_for('static', filename='js/components/cashburn.js') }}></script>
+
+{%- endmacro %}
+
+{% macro income_period(cashburn_cashburn) -%}
+<div class=income-period>
+  <h2>For income period</h2>
+  <a href=/app/glossary#cashburn><div class="display
+    {% if cashburn_cashburn <= 25 %}blue
+    {% elif cashburn_cashburn > 25 and cashburn_cashburn <= 50 %}green
+    {% elif cashburn_cashburn > 50 and cashburn_cashburn <= 75 %}yellow
+    {% elif cashburn_cashburn > 75 and cashburn_cashburn <= 100 %}orange
+    {% elif cashburn_cashburn > 100 and cashburn_cashburn <= 200 %}darkred
+    {% elif cashburn_cashburn > 200 %}red
+    {% endif %}">{{ cashburn_cashburn }}%</div></a>
+</div>
+{%- endmacro %}
+
+{% macro daily(cashburn_daily_allowance, cashburn_daily_spending, cashburn_daily_allotment) -%}
+<div class=daily>
+  <h2>Daily</h2>
+  <div class=display>Budgeted: {{ cashburn_daily_allowance }}</div>
+  <div class=display>Allotted: {{ cashburn_daily_allotment }}/day</div>
+  <div class=display>Spending: {{ cashburn_daily_spending }}/day</div>
+</div>
+
+{%- endmacro %}
+
+{% macro weekly(cashburn_weekly_allowance, cashburn_weekly_spending, cashburn_weekly_allotment) -%}
+<div class=weekly>
+  <h2>Weekly</h2>
+  <div class=display>Budgeted: {{ cashburn_weekly_allowance }}</div>
+  <div class=display>Allotted: {{ cashburn_weekly_allotment }}/week</div>
+  <div class=display>Spending: {{ cashburn_weekly_spending }}/week</div>
+</div>
+
+{%- endmacro %}

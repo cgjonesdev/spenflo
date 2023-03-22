@@ -1,0 +1,61 @@
+.dashboard .cashburn {
+  display: flex;
+  flex-direction: column;
+  height: 65vh;
+  width: 100%;
+}
+
+.dashboard .cashburn .yellow {
+  border: 1px solid #cc0;
+}
+
+.dashboard .cashburn .orange {
+  border: 2px solid #d60;
+}
+
+.dashboard .cashburn .darkred {
+  border: 7px solid #a00;
+}
+
+.dashboard .cashburn .red {
+  border: 15px solid #d22;
+}
+
+.dashboard .cashburn .income-period {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+}
+
+.dashboard .cashburn .income-period h2 {
+  margin: .5rem;
+}
+
+.dashboard .cashburn .income-period .display {
+  font-size: 7rem;
+  font-family: Raleway;
+  background: #eee;
+  border-radius: 2rem;
+  padding: 1rem;
+}
+
+.dashboard .cashburn .lower {
+  display: flex;
+  height: 50%;
+}
+
+.dashboard .cashburn .daily, .dashboard .cashburn .weekly {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+}
+
+.dashboard .cashburn .display {
+  font-size: 2rem;
+}
